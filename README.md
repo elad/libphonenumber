@@ -31,3 +31,6 @@ You only have to do this if you want to update the data.
     console.log(format(phone, country, false)); // (555) 555-5555
     console.log(format(phone, country, true)); // +1 555-555-5555
 
+## Note
+
+The API could be better but I don't have time at the moment to deal with it.
