@@ -28,8 +28,8 @@ You only have to do this if you want to update the data.
     var phone = "555-555-5555",
         country = "US";
 
-    console.log(format(phone, country, false)); // (555) 555-5555
-    console.log(format(phone, country, true)); // +1 555-555-5555
+    format(phone, country, false); // (555) 555-5555
+    format(phone, country, true); // +1 555-555-5555
 
 ## Note
 
