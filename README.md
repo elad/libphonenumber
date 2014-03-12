@@ -62,7 +62,7 @@ Whereas:
     air:tmp elad$ npm install eladxxx/libphonenumber
     libphonenumber@0.0.0 node_modules/libphonenumber
     air:tmp elad$ node test_libphonenumber_elad.js 555-555-5555 US
-    international: (555) 555-5555 local: +1 555-555-5555
+    international: +1 555-555-5555 local: (555) 555-5555
     air:tmp elad$ du -sh node_modules/libphonenumber/
     380K	node_modules/libphonenumber/
     air:tmp elad$ 
