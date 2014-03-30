@@ -22,9 +22,12 @@ This is a copy of [wajatimur/node-phonenumber](https://github.com/wajatimur/node
     var phone = "555-555-5555",
         country = "US";
 
-    console.log(format(phone, country, false)); // (555) 555-5555
-    console.log(format(phone, country, true)); // +1 555-555-5555
+    format(phone, country, false); // (555) 555-5555
+    format(phone, country, true); // +1 555-555-5555
+
+## Note
 
 ## Todo
 
   * Better API
+
