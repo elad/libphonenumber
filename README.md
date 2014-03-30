@@ -25,8 +25,6 @@ This is a copy of [wajatimur/node-phonenumber](https://github.com/wajatimur/node
     format(phone, country, false); // (555) 555-5555
     format(phone, country, true); // +1 555-555-5555
 
-## Note
-
 ## Todo
 
   * Better API
