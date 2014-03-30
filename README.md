@@ -1,19 +1,13 @@
 # libphonenumber
 
 ## Description
-This is libphonenumber ready for use in node.js with instructions on how to keep the data up-to-date.
+This is a copy of [wajatimur/node-phonenumber](https://github.com/wajatimur/node-phonenumber) with the following changes:
 
-In other words it's a compact version of [wajatimur/node-phonenumber](https://github.com/wajatimur/node-phonenumber)
+  * Closure is not part of the repository
+  * Updating is as simple as typing `make` (assuming [`curl`](http://curl.haxx.se/) is installed)
 
 ## Install
     npm install eladxxx/libphonenumber
-
-## Build
-You only have to do this if you want to update the data.
-
-1. Open closure.txt, copy its contents, and paste in [http://closure-compiler.appspot.com/home](http://closure-compiler.appspot.com/home)
-2. Click "Compile"
-3. Copy the result and paste in libphonenumber.js
 
 ## Use
 
@@ -31,3 +25,6 @@ You only have to do this if you want to update the data.
     console.log(format(phone, country, false)); // (555) 555-5555
     console.log(format(phone, country, true)); // +1 555-555-5555
 
+## Todo
+
+  * Better API
