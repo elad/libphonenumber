@@ -1,12 +1,22 @@
 {
-  "name": "libphonenumber",
-  "version": "0.0.0",
-  "description": "ERROR: No README.md file found!",
+  "name": "libphonenumber-node",
+  "version": "0.0.1",
+  "description": "libphonenumber for node.js",
   "main": "libphonenumber.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
-  "repository": "",
-  "author": "",
-  "license": "BSD"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elad/libphonenumber.git"
+  },
+  "keywords": [
+    "libphonenumber"
+  ],
+  "author": "Elad Efrat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elad/libphonenumber/issues"
+  },
+  "homepage": "https://github.com/elad/libphonenumber#readme"
 }

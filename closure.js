@@ -2,12 +2,12 @@
 // @compilation_level SIMPLE_OPTIMIZATIONS
 // @output_file_name default.js
 // @use_closure_library true
-// @code_url https://libphonenumber.googlecode.com/svn/trunk/javascript/i18n/phonenumbers/asyoutypeformatter.js
-// @code_url https://libphonenumber.googlecode.com/svn/trunk/javascript/i18n/phonenumbers/phonenumberutil.js
-// @code_url https://libphonenumber.googlecode.com/svn/trunk/javascript/i18n/phonenumbers/regioncodefortesting.js
-// @code_url https://libphonenumber.googlecode.com/svn/trunk/javascript/i18n/phonenumbers/phonemetadata.pb.js
-// @code_url https://libphonenumber.googlecode.com/svn/trunk/javascript/i18n/phonenumbers/metadata.js
-// @code_url https://libphonenumber.googlecode.com/svn/trunk/javascript/i18n/phonenumbers/phonenumber.pb.js
+// @code_url https://raw.githubusercontent.com/googlei18n/libphonenumber/master/javascript/i18n/phonenumbers/asyoutypeformatter.js
+// @code_url https://raw.githubusercontent.com/googlei18n/libphonenumber/master/javascript/i18n/phonenumbers/phonenumberutil.js
+// @code_url https://raw.githubusercontent.com/googlei18n/libphonenumber/master/javascript/i18n/phonenumbers/regioncodefortesting.js
+// @code_url https://raw.githubusercontent.com/googlei18n/libphonenumber/master/javascript/i18n/phonenumbers/phonemetadata.pb.js
+// @code_url https://raw.githubusercontent.com/googlei18n/libphonenumber/master/javascript/i18n/phonenumbers/metadata.js
+// @code_url https://raw.githubusercontent.com/googlei18n/libphonenumber/master/javascript/i18n/phonenumbers/phonenumber.pb.js
 // ==/ClosureCompiler==
 
 goog.require('goog.dom');
@@ -75,12 +75,96 @@ var formatNumber = function (number, countryCode, numberFormat, callback) {
   }
 };
 
-var e164 = function (number, countryCode, callback) {
-  return formatNumber(number, countryCode, PhoneNumberFormat.E164, callback);
-};
+var isValid = function(phone, countryCode) {
+  try {
+    var phone_number = phoneUtil.parseAndKeepRawInput(phone, countryCode);
+    return phoneUtil.isValidNumber(phone_number);
+  } catch (ex) {
+    return false;
+  }
+}
 
-var intl = function(number, countryCode, callback) {
-  return formatNumber(number, countryCode, PhoneNumberFormat.INTERNATIONAL, callback);
-};
+var getCountryCode = function(phone) {
+  try {
+    var phone_number = phoneUtil.parseAndKeepRawInput(phone);
+    return phoneUtil.getRegionCodeForNumber(phone_number);
+  } catch (ex) {
+    return null;
+  }
+}
 
-module.exports = i18n.phonenumbers;
+// Guess the type of a number. Returns one of the following:
+//   'FIXED_LINE'
+//   'MOBILE'
+//   'FIXED_LINE_OR_MOBILE'
+//   'TOLL_FREE'
+//   'PREMIUM_RATE'
+//   'SHARED_COST'
+//   'VOIP'
+//   'PERSONAL_NUMBER'
+//   'PAGER'
+//   'UAN'
+//   'VOICEMAIL'
+//   'UNKNOWN'
+var getType = function(phone, countryCode) {
+  try {
+    var phone_number = phoneUtil.parseAndKeepRawInput(phone, countryCode);
+    var phone_number_type = phoneUtil.getNumberType(phone_number);
+    for (var k in i18n.phonenumbers.PhoneNumberType) {
+      if (i18n.phonenumbers.PhoneNumberType[k] == phone_number_type)
+        return k;
+    }
+    throw null;
+  } catch (ex) {
+    return 'UNKNOWN';
+  }
+}
+
+var getFormat = function(how) {
+  how = how ? how.toLowerCase() : 'e164';
+  switch (how) {
+  case 'international':
+  case 'intl':
+  case 'global':
+      return PhoneNumberFormat.INTERNATIONAL;
+
+  case 'national':
+  case 'local':
+      return PhoneNumberFormat.NATIONAL;
+
+  case 'rfc3966':
+  case 'url':
+      return PhoneNumberFormat.RFC3966;
+
+  case 'e164':
+      return PhoneNumberFormat.E164;
+
+  default:
+      return null;
+  }
+}
+
+var format = function(phone, countryCode, how) {
+  try {
+    if (countryCode && countryCode.length > 2) {
+      how = countryCode;
+      countryCode = undefined;
+    }
+
+    var phone_number = phoneUtil.parseAndKeepRawInput(phone, countryCode);
+    var fmt = getFormat(how);
+    return fmt === null ? null : phoneUtil.format(phone_number, fmt);
+  } catch (ex) {
+    return null;
+  }
+}
+
+module.exports = {
+  format: format,
+  getCountryCode: getCountryCode,
+  isValid: isValid,
+  getType: getType,
+  PhoneUtil: phoneUtil,
+  PhoneNumberFormat: PhoneNumberFormat,
+  'i18n.phonenumbers': i18n.phonenumbers
+};

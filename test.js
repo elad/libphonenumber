@@ -1,12 +1,4 @@
-# libphonenumber
-
-## Install
-    npm install libphonenumber-node
-
-## Use
-
-```js
-var libphonenumber = require('libphonenumber');
+var libphonenumber = require('./libphonenumber');
 
 // Human readable to E164
 var n = ['212 555-5555', '(212) 555-5555', '212-555-5555', '+1 212-555-5555'];
@@ -27,8 +19,3 @@ var s = '+12125555555';
 console.log('isValid' + '\t\t' + libphonenumber.isValid(s), libphonenumber.isValid('foo'));
 console.log('getCountryCode' + '\t' + libphonenumber.getCountryCode(s));
 console.log('getType' + '\t\t' + libphonenumber.getType(s));
-```
-
-## Update
-
-Typing `make` should sync the code with the latest official [libphonenumber](https://github.com/googlei18n/libphonenumber).
