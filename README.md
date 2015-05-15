@@ -6,7 +6,7 @@
 ## Use
 
 ```js
-var libphonenumber = require('libphonenumber');
+var libphonenumber = require('libphonenumber-node');
 
 // Human readable to E164
 var n = ['212 555-5555', '(212) 555-5555', '212-555-5555', '+1 212-555-5555'];
