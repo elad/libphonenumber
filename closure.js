@@ -265,7 +265,7 @@ var ccISO2toISO3 = {
     "VU": "VUT", // Vanuatu
     "WF": "WLF", // Wallis and Futuna
     "WS": "WSM", // Samoa
-    "XK": "XKX", // undefined
+    "XK": "XKX", // Kosovo
     "YE": "YEM", // Yemen
     "YT": "MYT", // Mayotte
     "ZA": "ZAF", // South Africa
