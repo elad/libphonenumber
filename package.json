@@ -1,6 +1,6 @@
 {
   "name": "libphonenumber-node",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "libphonenumber for node.js",
   "main": "libphonenumber.js",
   "scripts": {
