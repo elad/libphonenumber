@@ -8,4 +8,4 @@ all:
 		-d code_url="https://raw.githubusercontent.com/googlei18n/libphonenumber/master/javascript/i18n/phonenumbers/phonenumber.pb.js" \
 		--data-urlencode js_code@closure.js \
 		-o libphonenumber.js \
-		http://closure-compiler.appspot.com/compile
+		https://closure-compiler.appspot.com/compile
